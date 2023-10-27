@@ -82,7 +82,7 @@ export const {
     CompletedIsClicked,
     ImportantIsClciked,
 
-    
+
     addNewTask,
     markAsImportant,
     markAsComplete,
@@ -94,8 +94,8 @@ export const {
     toggleImportantIsClicked,
 
     
-} = dataStore.actions;
+} = todoSlice.actions;
 
 
-export default dataStore.reducer;
+export default todoSlice.reducer;
 
