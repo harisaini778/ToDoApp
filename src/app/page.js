@@ -4,13 +4,14 @@ import React,{useState} from 'react';
 import { Navbar, Container, FormControl, Button, Nav,Stack } from 'react-bootstrap';
 import { BsSearch, BsFillPersonFill, BsPlus, BsHouseDoorFill, BsCheckCircle, BsCalendar2CheckFill } from 'react-icons/bs';
 import LeftOffcanvas from './SideNavbar/page';
+import TaskModal from "./TaskModal/page";
 import "./style.css";
 
 const Home = () => {
 
-  const [show, setShow] = useState(true); // Manage the state here
+  const [show, setShow] = useState(true); 
 
-  const handleClose = () => setShow(false); // Define the handleClose method
+  const handleClose = () => setShow(false); 
 
   const today = new Date();
   const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
@@ -62,6 +63,7 @@ const Home = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <TaskModal show={show} handleClose={handleClose} />
       <LeftOffcanvas show={show} handleClose={handleClose} />
      </div>
   );
