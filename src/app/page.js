@@ -1,15 +1,22 @@
 "use client"
 
-import React from 'react';
+import React,{useState} from 'react';
 import { Navbar, Container, FormControl, Button, Nav,Stack } from 'react-bootstrap';
-import { BsSearch, BsFillPersonFill, BsPlus, BsHouseDoorFill, BsCheckCircle,BsCalendar2CheckFill } from 'react-icons/bs';
+import { BsSearch, BsFillPersonFill, BsPlus, BsHouseDoorFill, BsCheckCircle, BsCalendar2CheckFill } from 'react-icons/bs';
+import LeftOffcanvas from './SideNavbar/page';
 import "./style.css";
 
 const Home = () => {
+
+  const [show, setShow] = useState(true); // Manage the state here
+
+  const handleClose = () => setShow(false); // Define the handleClose method
+
   const today = new Date();
   const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
 
   return (
+    <div>
     <Navbar variant="dark" expand="lg" className='gradient-background'>
         <Container>
           <Navbar.Brand>
@@ -55,7 +62,8 @@ const Home = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
+      <LeftOffcanvas show={show} handleClose={handleClose} />
+     </div>
   );
 };
 
