@@ -17,7 +17,7 @@ const Home = () => {
 
   return (
     <div>
-    <Navbar variant="dark" expand="lg" className='gradient-background'>
+    <Navbar variant="dark" expand="lg" className='gradient-background p-4'>
         <Container>
           <Navbar.Brand>
             <div className='navbar-brand'>Next ToDo's</div>
@@ -39,7 +39,7 @@ const Home = () => {
                 
               <Button variant="outline-light" style={{ textWrap: "nowrap" }}>
                 
-                <Stack direction='horizontal' gap={1}>
+                <Stack direction='horizontal'>
                 <BsPlus size={30} />
                 <div>Add new task</div>
                    </Stack>

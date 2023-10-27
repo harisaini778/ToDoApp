@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Card, Container, Row, Col, Badge, Button } from 'react-bootstrap';
-import { BsPerson, BsCalendar, BsCheck, BsExclamationCircle, BsXCircle } from 'react-icons/bs';
+import { BsPerson, BsCalendar, BsCheck, BsExclamationCircle, BsXCircle,BsPlus } from 'react-icons/bs';
 import { Stack } from 'react-bootstrap';
 import './page.css';
 
@@ -14,12 +14,21 @@ const LeftOffcanvas = ({ show, handleClose }) => {
                 <Card.Title className="card-title">TO-DO-LIST</Card.Title>
                 <Container>
                     <Row style={{ marginTop: '20px' }}>
-                        <Col>
+             
+                    <Col>
+                 <div>        
+                <Button className="add-new-task-btn" size="sm">  
+                <Stack direction='horizontal'>
+                <BsPlus size={30} />
+                <div>Add new task</div>
+                   </Stack>
+                </Button>
+                </div>   
                             <h5 className="todays-tasks-title">Todays Task</h5>
                             <Row className="task-label" style={{ marginTop: '10px' }}>
                                 <Col>
                                     <Stack direction='horizontal' gap={5}>
-                                        <h6>Important Tasks</h6>
+                                        <h6 >Important Tasks</h6>
                                         <Badge bg="warning">3</Badge>
                                     </Stack>
                  
@@ -28,7 +37,7 @@ const LeftOffcanvas = ({ show, handleClose }) => {
                             <Row className="task-label" style={{ marginTop: '10px' }}>
                                 <Col>
                                     <Stack direction='horizontal' gap={5}>
-                                        <h6>Completed Tasks</h6>
+                                        <h6 >Completed Tasks</h6>
                                         <Badge bg="success">5</Badge>
                                     </Stack>
                                   

@@ -1,6 +1,6 @@
 .card-container {
     position: fixed;
-    top: 65px;
+    top: 98px;
     bottom: 0;
     width: 250px;
     z-index: 1;
@@ -22,12 +22,32 @@
     padding-bottom: 10px;
 }
 
+
 .task-label {
     margin-top: 10px;
+    transition: 0.3s ease;
+}
+
+.task-label:hover{
+    color : blue;
 }
 
 .close-button {
     position: absolute;
     bottom: 20px;
     right: 20px;
+}
+
+.add-new-task-btn {
+    background-image: linear-gradient(to right,navy,blue,indigo);
+    color : white;
+    text-align: center !important;
+    margin-bottom: 15px !important;
+    background-color: transparent !important;
+    border: none !important;
+    transition: 0.3s ease-in-out;
+    text-wrap : nowrap !important;
+}
+.add-new-task-btn:hover{
+    background-image: linear-gradient(to left, navy, blue,indigo);
 }

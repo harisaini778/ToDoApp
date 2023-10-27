@@ -1,6 +1,6 @@
 .gradient-background {
   color : white;
-  background: linear-gradient(to right, navy, blue, rgb(255, 69, 0)); 
+  background: linear-gradient(to right, navy,blue,indigo); 
 }
 .navbar-brand {
     color : white;
