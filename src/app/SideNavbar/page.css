@@ -1,4 +1,4 @@
-.card-container {
+.card-container-sideNavbar {
     /* position: fixed; */
     /* top: 98px; */
     /* bottom: 0; */
@@ -9,18 +9,22 @@
 }
 
 .card-title {
-    background: linear-gradient(to right,  navy, rgb(255, 69, 0));
+    background: linear-gradient(to right, #2ecc71, #27ae60);
     font-weight: bold;
+    font-size : medium !important;
     -webkit-background-clip: text;
     color: transparent;
     border-bottom: 1px solid lightgrey;
     padding-bottom: 10px;
+    text-align: start;
 }
 
 .todays-tasks-title {
     border-bottom: 1px solid lightgrey;
     padding-bottom: 10px;
     margin-bottom: 25px;
+    font-size: medium !important;
+  
 }
 
 
@@ -28,6 +32,8 @@
     margin-top: 10px;
     margin-bottom: 20px;
     transition: 0.3s ease;
+    font-size: small !important;
+  
 }
 
 .task-label:hover{
@@ -36,7 +42,7 @@
 
 
 .add-new-task-btn {
-    background-image: linear-gradient(to right,navy,blue,indigo);
+    background-image: linear-gradient(to right, #2ecc71, #27ae60);
     color : white;
     text-align: center !important;
     margin-bottom: 25px !important;
@@ -44,7 +50,8 @@
     border: none !important;
     transition: 0.3s ease-in-out;
     text-wrap : nowrap !important;
+    font-size: small !important;
 }
 .add-new-task-btn:hover{
-    background-image: linear-gradient(to left, navy, blue,indigo);
+    background-image: linear-gradient(to left, green,forestgreen);
 }

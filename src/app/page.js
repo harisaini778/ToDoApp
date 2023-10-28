@@ -1,7 +1,7 @@
 "use client"
 
 import React,{useState} from 'react';
-import { Navbar, Container, FormControl, Button, Nav,Stack,Row,Col } from 'react-bootstrap';
+import { Navbar, Container, FormControl, Button, Nav,Stack,Row,Col,Badge } from 'react-bootstrap';
 import { BsSearch, BsFillPersonFill, BsPlus, BsHouseDoorFill, BsCheckCircle, BsCalendar2CheckFill } from 'react-icons/bs';
 import LeftOffcanvas from './SideNavbar/page';
 import TaskModal from "./TaskModal/page";
@@ -18,10 +18,10 @@ const Home = () => {
 
   return (
     <div>
-    <Navbar variant="dark" expand="lg" className='gradient-background p-4'>
+    <Navbar variant="dark" expand="lg" className='gradient-background p-2'>
         <Container>
           <Navbar.Brand>
-            <div className='navbar-brand'>Next ToDo's</div>
+          <div className='navbar-brand '>Next ToDo's</div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -65,9 +65,11 @@ const Home = () => {
       </Navbar>
     
         <Row>
-          <Col lg={3}>  <LeftOffcanvas show={show} handleClose={handleClose} /> </Col>
-          <Col lg={6}>Task's</Col>
-          <Col lg={3}><TaskModal show={show} handleClose={handleClose} /></Col>
+          <Col lg={2}>  <LeftOffcanvas show={show} handleClose={handleClose} /> </Col>
+        <Col lg={7}>
+          Task's
+        </Col>
+        <Col lg={3}><TaskModal show={show} handleClose={handleClose} /></Col>
         </Row>
 
       

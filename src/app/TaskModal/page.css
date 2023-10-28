@@ -1,0 +1,59 @@
+.card-container-taskModal {
+    margin: 2px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: -4px -4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.card-header-taskModal {
+    background: linear-gradient(to right, #2ecc71, #27ae60);
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 10px;
+}
+.add-btn {
+   background-image: linear-gradient(to right, #2ecc71, #27ae60);
+}
+
+.add-btn:hover {
+    background-image: linear-gradient(to right, green,forestgreen);
+}
+
+h5 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.p-2 {
+    padding: 0.5rem;
+}
+
+.card-footer {
+    border-top: none;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.my-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.btn {
+    text-align: center;
+    margin: 10px;
+}
+
+.close-btn {
+    background-image: linear-gradient(to right,crimson,brown);
+    background-color: transparent;
+    color: white;
+}
+
+.add-task-btn {
+    background-color: #0d6efd;
+    color: white;
+}
