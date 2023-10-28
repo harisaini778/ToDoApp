@@ -4,7 +4,9 @@ import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { BsPlus } from 'react-icons/bs';
 
-const TaskModal = ({ show, handleClose }) => {
+const TaskModal = () => {
+
+
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
