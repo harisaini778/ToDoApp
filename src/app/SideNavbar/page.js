@@ -29,7 +29,7 @@ const LeftOffcanvas = ({ show, handleClose }) => {
                                 <Col>
                                     <Stack direction='horizontal' gap={5}>
                                         <h6 >Important Tasks</h6>
-                                        <Badge bg="warning">3</Badge>
+                                        <Badge bg="warning"  className='ms-auto'>3</Badge>
                                     </Stack>
                  
                                 </Col>
@@ -38,7 +38,7 @@ const LeftOffcanvas = ({ show, handleClose }) => {
                                 <Col>
                                     <Stack direction='horizontal' gap={5}>
                                         <h6 >Completed Tasks</h6>
-                                        <Badge bg="success">5</Badge>
+                                        <Badge bg="success"  className='ms-auto'>5</Badge>
                                     </Stack>
                                   
                 
@@ -48,7 +48,7 @@ const LeftOffcanvas = ({ show, handleClose }) => {
                                 <Col>
                                     <Stack direction='horizontal' gap={5}>
                                         <h6>Uncompleted Tasks</h6>
-                                        <Badge bg="danger">2</Badge>
+                                        <Badge bg="danger" className='ms-auto'>2</Badge>
                                     </Stack>
                  
                                 </Col>
@@ -65,12 +65,19 @@ const LeftOffcanvas = ({ show, handleClose }) => {
                                 <BsExclamationCircle size={20} />
                             </Stack>
                         </Col>
-                    </Row>
+                        </Row>
+                        <Row>
+                     <Col>
+                                <Button variant="secondary" onClick={handleClose} className="mt-4">
+                                    <Stack direction='horizontal' gap={2}>
+                                     <BsXCircle size={20}/>
+                                     <div>Close</div>
+                                    </Stack>
+                    </Button>
+                        </Col>
+                        </Row>
                 </Container>
             </Card.Body>
-            <Button variant="secondary" onClick={handleClose} className="close-button">
-                <BsXCircle size={20} style={{ marginBottom: '3px' }} /> Close
-            </Button>
             </Card> : <div></div>}
             </div>
   );

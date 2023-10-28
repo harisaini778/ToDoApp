@@ -1,7 +1,7 @@
 "use client"
 
 import React,{useState} from 'react';
-import { Navbar, Container, FormControl, Button, Nav,Stack } from 'react-bootstrap';
+import { Navbar, Container, FormControl, Button, Nav,Stack,Row,Col } from 'react-bootstrap';
 import { BsSearch, BsFillPersonFill, BsPlus, BsHouseDoorFill, BsCheckCircle, BsCalendar2CheckFill } from 'react-icons/bs';
 import LeftOffcanvas from './SideNavbar/page';
 import TaskModal from "./TaskModal/page";
@@ -63,8 +63,14 @@ const Home = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <TaskModal show={show} handleClose={handleClose} />
-      <LeftOffcanvas show={show} handleClose={handleClose} />
+    
+        <Row>
+          <Col lg={3}>  <LeftOffcanvas show={show} handleClose={handleClose} /> </Col>
+          <Col lg={6}>Task's</Col>
+          <Col lg={3}><TaskModal show={show} handleClose={handleClose} /></Col>
+        </Row>
+
+      
      </div>
   );
 };
