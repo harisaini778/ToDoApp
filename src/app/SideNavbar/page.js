@@ -1,16 +1,34 @@
 "use client"
 
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { Card, Container, Row, Col, Badge, Button } from 'react-bootstrap';
 import { BsPerson, BsCalendar, BsCheck, BsExclamationCircle, BsXCircle, BsPlus } from 'react-icons/bs';
 import { Stack } from 'react-bootstrap';
 import './page.css';
 
 const LeftOffcanvas = ({ show, handleClose }) => {
+
+  const [isSmaller, setIsSmaller] = useState(window.innerWidth < 576);
+
+  useEffect(() => {
+
+    const handleResize = () => {
+      setIsSmaller(window.innerWidth < 576);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+
+   }, []);
+
+
   return (
     <div>
       {show ? (
-        <Card className="card-container-sideNavbar">
+        <Card className="card-container-sideNavbar" style={{position:isSmaller? "static":"fixed"}}>
           <Card.Body>
             <Container>
               <Card.Title className="card-title">TO-DO-LIST</Card.Title>

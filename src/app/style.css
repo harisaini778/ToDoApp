@@ -7,3 +7,9 @@
     color : white;
     font-weight : bold;
 }
+.container-style {
+  padding-top: 80px;
+  position: relative;
+  overflow: auto;
+  overflow-x: hidden;
+}

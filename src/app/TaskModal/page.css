@@ -1,8 +1,7 @@
 .card-container-taskModal {
-    margin: 2px;
+    margin-top: 2px;
     background-color: rgba(255, 255, 255, 0.9);
-    box-shadow: -4px -4px 6px rgba(0, 0, 0, 0.4);
-    position: fixed !important;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 .card-header-taskModal {

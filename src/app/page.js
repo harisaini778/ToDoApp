@@ -1,6 +1,6 @@
 "use client"
 
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { Navbar, Container, FormControl, Button, Nav,Stack,Row,Col,Badge } from 'react-bootstrap';
 import { BsSearch, BsFillPersonFill, BsPlus, BsHouseDoorFill, BsCheckCircle, BsCalendar2CheckFill } from 'react-icons/bs';
 import LeftOffcanvas from './SideNavbar/page';
@@ -9,6 +9,23 @@ import TaskCard from './TaskCard/page';
 import "./style.css";
 
 const Home = () => {
+
+
+  const [isSmaller, setIsSmaller] = useState(window.innerWidth < 576);
+
+  useEffect(() => {
+
+    const handleResize = () => {
+      setIsSmaller(window.innerWidth < 576);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+
+   }, []);
 
   const [show, setShow] = useState(true); 
 
@@ -65,7 +82,7 @@ const Home = () => {
         </Container>
       </Navbar>
        
-       <div  style={{ paddingTop: "80px", position: "relative", overflow: "auto",overflowX:"hidden" }}>
+       <div className={isSmaller ? "none" : "container-style"}>
         <Row>
           <Col lg={2}>  <LeftOffcanvas show={show} handleClose={handleClose} /> </Col>
         <Col lg={7}>

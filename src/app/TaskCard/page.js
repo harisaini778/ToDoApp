@@ -27,7 +27,7 @@ const TaskCard = () => {
 
   return (
     <div>
-          <div style={{ textAlign: "center", color: "#2ecc71", fontWeight: "bolder", fontSize: "1.5rem" }}
+          <div style={{ textAlign: "center", color: "#2ecc71", fontWeight: "bolder", fontSize: "1.5rem",display:"flex",justifyContent:"center" }}
           className="mt-3 mb-2">
               <h style={{borderBottom:"3px solid #2ecc71"}}>Pending Task's</h></div>
           <Row> 

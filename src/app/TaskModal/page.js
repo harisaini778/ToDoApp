@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef } from 'react';
+import React, { useRef,useState,useEffect } from 'react';
 import { Card, Form, Button, Stack } from 'react-bootstrap';
 import { BsPlus, BsXCircle } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +8,24 @@ import { toggleTaskModelHandler } from '../store/Features/slices/dataStore';
 import './page.css';
 
 const TaskModal = () => {
+
+
+  const [isSmaller, setIsSmaller] = useState(window.innerWidth < 576);
+
+  useEffect(() => {
+
+    const handleResize = () => {
+      setIsSmaller(window.innerWidth < 576);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+
+   }, []);
+
   const dispatch = useDispatch();
 
   const modalDisplayHandler = () => {
@@ -56,7 +74,7 @@ const TaskModal = () => {
 
   return (
     <div>
-      <Card className='card-container-taskModal'>
+      <Card className='card-container-taskModal' style={{position:isSmaller?"static":"fixed"}}>
         <Card.Header className='card-header-taskModal'>
           <h5 className='mx-auto my-auto p-1'>Add a Task</h5>
         </Card.Header>
