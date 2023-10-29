@@ -85,7 +85,7 @@ const TaskModal = () => {
               </Stack>
             </Button>
             <Button  onClick={addTodoHandler} className='mx-auto my-auto add-btn' size='sm'>
-              <Stack direction='horizontal' gap={2}>
+              <Stack direction='horizontal'>
                 <BsPlus size={20} />
                 <div>Add task</div>
               </Stack>

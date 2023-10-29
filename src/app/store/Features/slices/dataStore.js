@@ -20,35 +20,28 @@ const initialState = {
 }
 
 export const fetchAllTodo = createAsyncThunk(
-    "slices/fetchAllTodo",
-    async (_, thunkAPI) => {
-    
-        try {
-        
-            const response = await fetch("http://localhost:3000/api");
-        
-            if (!response.ok) {
-                throw new Error("Failed to fetch todo's");
-            }
-
-            const data = await response.json();
-
-            console.log("Fetched todo data is : ", data);
-        
-            return data;
-  
-        } catch (error) {
-            throw error;
-        }
+  "slices/fetchAllTodo",
+  async (_, thunkAPI) => {
+    try {
+      const response = await fetch("http://localhost:3000/api");
+      if (!response.ok) {
+        throw new Error("Failed to fetch todo's");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      throw error;
     }
+  }
 );
+
 
 const todoSlice = createSlice({
 
     name: "todoSlice",
     initialState,
     reducers: {
-        addNewTask: (state,action) => {
+        addNewTask: (state, action) => {
             state.incompleteTasks = action.payload;
         },
         markAsImportant: (state, action) => {
@@ -88,27 +81,21 @@ const todoSlice = createSlice({
             state.IncompleteIsClicked = false;
             state.ImportantIsClciked = false;
         },
-         toggleImportantIsClicked: (state) => {
+        toggleImportantIsClicked: (state) => {
             state.ImportantIsClciked = !state.ImportantIsClciked;
             state.IncompleteIsClicked = false;
-            state.CompletedIsClicked= false;
+            state.CompletedIsClicked = false;
         },
 
         toggleTaskModelHandler: (state) => {
             state.showTaskModal = !state.showTaskModal;
         },
-    extraReducers: (builder) => {
-    
-    builder
-      .addCase(fetchAllTodo.fulfilled, (state, action)  => {
-        state.incompleteTasks = action.payload;
-    })
-
-  }
-
-
-
-    }
+    },
+     extraReducers: (builder) => {
+            builder.addCase(fetchAllTodo.fulfilled, (state, action) => {
+                state.incompleteTasks = action.payload;
+            });
+        }
 
 });
 

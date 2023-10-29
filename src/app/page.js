@@ -5,6 +5,7 @@ import { Navbar, Container, FormControl, Button, Nav,Stack,Row,Col,Badge } from 
 import { BsSearch, BsFillPersonFill, BsPlus, BsHouseDoorFill, BsCheckCircle, BsCalendar2CheckFill } from 'react-icons/bs';
 import LeftOffcanvas from './SideNavbar/page';
 import TaskModal from "./TaskModal/page";
+import TaskCard from './TaskCard/page';
 import "./style.css";
 
 const Home = () => {
@@ -18,7 +19,7 @@ const Home = () => {
 
   return (
     <div>
-    <Navbar variant="dark" expand="lg" className='gradient-background p-2'>
+    <Navbar variant="dark" expand="lg" className='gradient-background p-2'  style={{ zIndex: 1000,width:"100vw" }}>
         <Container>
           <Navbar.Brand>
           <div className='navbar-brand '>Next ToDo's</div>
@@ -63,15 +64,16 @@ const Home = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    
+       
+       <div  style={{ paddingTop: "80px", position: "relative", overflow: "auto",overflowX:"hidden" }}>
         <Row>
           <Col lg={2}>  <LeftOffcanvas show={show} handleClose={handleClose} /> </Col>
         <Col lg={7}>
-          Task's
+          <TaskCard/>
         </Col>
         <Col lg={3}><TaskModal show={show} handleClose={handleClose} /></Col>
         </Row>
-
+      </div>
       
      </div>
   );
