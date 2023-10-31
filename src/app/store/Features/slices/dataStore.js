@@ -47,10 +47,11 @@ const todoSlice = createSlice({
         markAsImportant: (state, action) => {
             const taskId = action.payload;
             const todoIndex = state.incompleteTasks.findIndex((item) =>
-                item.id === taskId);
+                item._id === taskId);
             if (todoIndex !== -1) {
                 const importantTask = state.incompleteTasks[todoIndex];
                 state.importantTasks.push(importantTask);
+                state.incompleteTasks = state.incompleteTasks.filter((todo) => todo._id !== taskId);
             }
         },
         markAsComplete: (state, action) => {
@@ -60,6 +61,7 @@ const todoSlice = createSlice({
             if (todoIndex !== -1) {
                 const completedTask = state.incompleteTasks[todoIndex];
                 state.completedTasks.push(completedTask);
+                state.incompleteTasks = state.incompleteTasks.filter((todo) => todo._id !== taskId);
             }
         },
         toggleModalIsClicked: (state) => {
