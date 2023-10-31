@@ -52,6 +52,23 @@ export const fetchAllImportantTodo = createAsyncThunk(
 );
 
 
+export const fetchAllCompletedTodo = createAsyncThunk(
+    "slices/completedTasks",
+    async (_, thunkAPI) => {
+        try {
+            const response = await fetch("http://localhost:3000/api/completedTaskRoute");
+            if (!response.ok) {
+                throw new Error("Failed to fetch data");
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+);
+
+
 const todoSlice = createSlice({
 
     name: "todoSlice",
@@ -110,13 +127,17 @@ const todoSlice = createSlice({
         },
     },
      extraReducers: (builder) => {
-            builder.addCase(fetchAllTodo.fulfilled, (state, action) => {
-                state.incompleteTasks = action.payload;
-            });
-            builder.addCase(fetchAllImportantTodo.fulfilled, (state, action) => {
-                state.importantTasks = action.payload;
-            });
-        }
+    builder.addCase(fetchAllTodo.fulfilled, (state, action) => {
+        state.incompleteTasks = action.payload;
+    });
+    builder.addCase(fetchAllImportantTodo.fulfilled, (state, action) => {
+        state.importantTasks = action.payload;
+    });
+    builder.addCase(fetchAllCompletedTodo.fulfilled, (state, action) => {
+        state.completedTasks = action.payload;
+    });
+}
+
 
 });
 

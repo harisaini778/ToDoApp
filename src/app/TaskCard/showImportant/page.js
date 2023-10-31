@@ -22,7 +22,7 @@ const ImportantTask = () => {
     return (
         <Container>
             <Link href="/">
-                <Button className="mt-4 mb-2" style={{ backgroundColor: "#2ecc71" }}>
+                <Button className="mt-4 mb-2" variant="success">
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <BsArrowLeft size={24} />
                         <span style={{ marginLeft: "5px" }}>Go Back</span>
