@@ -19,7 +19,7 @@ const TaskCard = () => {
   const [isImportant, setIsImportant] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
 
-  const handleToggleImportant = async (taskId,taskDes,taskDate,taskTitle) => {
+  const handleToggleImportant = async (taskId,taskDate,taskTitle,taskDes) => {
       setIsImportant(!isImportant);
       //dispatch(markAsImportant(taskId))
       const obj = {
@@ -66,7 +66,7 @@ const TaskCard = () => {
 
   };
 
-  const handleToggleCompleted = async (taskId,taskDes,taskDate,taskTitle) => {
+  const handleToggleCompleted = async (taskId,taskDate,taskTitle,taskDes) => {
       setIsCompleted(!isCompleted);
          const obj = {
           title : taskTitle,

@@ -35,6 +35,22 @@ export const fetchAllTodo = createAsyncThunk(
   }
 );
 
+export const fetchAllImportantTodo = createAsyncThunk(
+    "slices/importantTasks",
+    async (_, thunkAPI) => {
+        try {
+            const response = await fetch("http://localhost:3000/api/importantTaskRoute");
+            if (!response.ok) {
+                throw new Error("Failed to fetch data");
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+);
+
 
 const todoSlice = createSlice({
 
@@ -96,6 +112,9 @@ const todoSlice = createSlice({
      extraReducers: (builder) => {
             builder.addCase(fetchAllTodo.fulfilled, (state, action) => {
                 state.incompleteTasks = action.payload;
+            });
+            builder.addCase(fetchAllImportantTodo.fulfilled, (state, action) => {
+                state.importantTasks = action.payload;
             });
         }
 
