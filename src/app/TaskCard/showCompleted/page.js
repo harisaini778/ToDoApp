@@ -41,7 +41,7 @@ const CompletedTask = () => {
                                 <Card.Subtitle className="mb-2 text-muted">{task.date}</Card.Subtitle>
                                 <Card.Text style={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden" }}>{task.description}</Card.Text>
 
-                                <Button variant="warning">
+                                <Button variant="success">
                                     < AiFillCheckCircle  />
                                 </Button>{" "}
                             </Card.Body>

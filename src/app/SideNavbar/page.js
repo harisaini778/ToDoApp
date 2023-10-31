@@ -4,9 +4,13 @@ import React,{useEffect,useState} from 'react';
 import { Card, Container, Row, Col, Badge, Button } from 'react-bootstrap';
 import { BsPerson, BsCalendar, BsCheck, BsExclamationCircle, BsXCircle, BsPlus } from 'react-icons/bs';
 import { Stack } from 'react-bootstrap';
+import { useSelector,useDispatch } from "react-redux";
+import { fetchAllTodo,fetchAllImportantTodo,fetchAllCompletedTodo } from '../store/Features/slices/dataStore';
 import './page.css';
 
 const LeftOffcanvas = ({ show, handleClose }) => {
+
+  const dispatch = useDispatch();
 
   const [isSmaller, setIsSmaller] = useState(window.innerWidth < 576);
 
@@ -22,7 +26,22 @@ const LeftOffcanvas = ({ show, handleClose }) => {
       window.removeEventListener("resize", handleResize);
     };
 
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchAllTodo());
+    dispatch(fetchAllImportantTodo());
+    dispatch(fetchAllCompletedTodo());
    }, []);
+  
+  const allTodo = useSelector((state) => state.todoSlice.incompleteTasks);
+  const allTodoCount = allTodo ? allTodo.length : 0;
+
+  const importantTodo = useSelector((state) => state.todoSlice.importantTasks);
+  const importantTodoCount = importantTodo ? importantTodo.length : 0;
+
+   const completeTodo = useSelector((state) => state.todoSlice.completedTasks);
+  const completeTodoCount = completeTodo ? completeTodo.length : 0;
 
 
   return (
@@ -46,9 +65,9 @@ const LeftOffcanvas = ({ show, handleClose }) => {
                   <Row className="task-label" style={{ marginTop: '10px' }}>
                     <Col>
                       <Stack direction="horizontal" gap={1}>
-                        <span className='me-auto'>Important Tasks</span>
+                        <span className='me-auto'>All Tasks</span>
                         <Badge bg="warning" className="ms-auto my-auto">
-                          3
+                          {allTodoCount}
                         </Badge>
                       </Stack>
                     </Col>
@@ -56,9 +75,9 @@ const LeftOffcanvas = ({ show, handleClose }) => {
                   <Row className="task-label" style={{ marginTop: '10px' }}>
                     <Col>
                       <Stack direction="horizontal" gap={1}>
-                        <span className='me-auto'>Completed Tasks</span>
+                        <span className='me-auto'>Incomplete Tasks</span>
                         <Badge bg="success" className="ms-auto my-auto">
-                          5
+                          { importantTodoCount}
                         </Badge>
                       </Stack>
                     </Col>
@@ -66,9 +85,9 @@ const LeftOffcanvas = ({ show, handleClose }) => {
                   <Row className="task-label" style={{ marginTop: '10px' }}>
                     <Col>
                       <Stack direction="horizontal">
-                        <span className='me-auto'>Uncompleted Tasks</span>
+                        <span className='me-auto'>Completed Tasks</span>
                         <Badge bg="danger" className="ms-auto my-auto">
-                          2
+                          {completeTodoCount}
                         </Badge>
                       </Stack>
                     </Col>
