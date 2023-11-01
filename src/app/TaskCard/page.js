@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Card, Button,Row,Col } from "react-bootstrap";
-import { AiFillStar, AiFillCheckCircle,AiFillEdit } from "react-icons/ai";
+import { AiFillStar, AiFillCheckCircle,AiFillEdit,AiFillDelete } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllTodo,editTodo,toggleEditClickHandler } from "../store/Features/slices/dataStore";
 //import { markAsImportant } from "../store/Features/slices/dataStore";
@@ -115,13 +115,34 @@ const TaskCard = () => {
   const handleToggleEdit = (taskId, taskDate, taskTitle, taskDes) => {
     dispatch(toggleEditClickHandler());
     const obj = {
-           _id : taskId,
-          title : taskTitle,
-          date: taskDate,
-          description : taskDes,
-      }
-     dispatch(editTodo(obj));
- }  
+      _id: taskId,
+      title: taskTitle,
+      date: taskDate,
+      description: taskDes,
+    }
+    dispatch(editTodo(obj));
+  };
+
+  const handleDelete = async (taskId) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/${taskId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      alert('You have successfully deleted the task!');
+    } catch (error) {
+      console.log('Error occurred while deleting the task! ', error);
+      alert('Error occurred while deleting the task!');
+    }
+  }
+  
+  
 
   return (
     <div>
@@ -151,13 +172,20 @@ const TaskCard = () => {
             >
               <AiFillCheckCircle />
                   </Button>{" "}
-                  
-            <Button
+
+          <Button
               variant={isCompleted ? "success" : "outline-success"}
               onClick={()=>handleToggleEdit(task._id,task.date,task.title,task.description)}
             >
               <AiFillEdit />
                   </Button>{" "}
+
+          <Button
+              variant="outline-danger"
+              onClick={()=>handleDelete(task._id)}
+            >
+              <AiFillDelete />
+                  </Button>{" "}        
                   
           </Card.Body>
                   </Card>
