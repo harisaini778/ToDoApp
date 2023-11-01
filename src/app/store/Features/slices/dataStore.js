@@ -8,6 +8,8 @@ const initialState = {
     incompleteTasks : [],
     completedTasks: [],
     importantTasks: [],
+    editedIncompleteTasks: [],
+    editIsClicked : false,
     modalIsClicked: false,
     addNewTaskIsClicked: false,
     leftOffCanvasIsClicked: true,
@@ -97,6 +99,9 @@ const todoSlice = createSlice({
                 state.incompleteTasks = state.incompleteTasks.filter((todo) => todo._id !== taskId);
             }
         },
+        editTodo: (state,action) => {
+            state.editedIncompleteTasks.push(action.payload);
+        },
         toggleModalIsClicked: (state) => {
             state.modalIsClicked = !state.modalIsClicked;
         },
@@ -125,6 +130,9 @@ const todoSlice = createSlice({
         toggleTaskModelHandler: (state) => {
             state.showTaskModal = !state.showTaskModal;
         },
+        toggleEditClickHandler: (state) => {
+            state.editIsClicked = !state.editIsClicked;
+        },
     },
      extraReducers: (builder) => {
     builder.addCase(fetchAllTodo.fulfilled, (state, action) => {
@@ -151,12 +159,15 @@ export const {
     IncompleteIsClicked,
     CompletedIsClicked,
     ImportantIsClciked,
+    editIsClicked,
     showTaskModal,
+    editedIncompleteTasks,
 
 
     addNewTask,
     markAsImportant,
     markAsComplete,
+    editTodo,
     toggleModalIsClicked,
     toggleAddNewTaskIsClicked,
     toggleLeftOffCanvasIsClicked,
@@ -164,6 +175,7 @@ export const {
     toggleCompletedIsClicked,
     toggleImportantIsClicked,
     toggleTaskModelHandler,
+    toggleEditClickHandler,
 
     
 } = todoSlice.actions;

@@ -28,6 +28,23 @@ const TaskModal = () => {
 
   const dispatch = useDispatch();
 
+  const editIsClicked = useSelector((state) => state.todoSlice.editIsClicked);
+  const editedList = useSelector((state) => state.todoSlice.editedIncompleteTasks);
+    
+  useEffect(() => { 
+
+    if (editIsClicked) {
+
+    const obj = editedList[0]; // Assuming you want to handle the first item
+
+    titleRef.current.value = obj.title;
+    dateRef.current.value = obj.date;
+    descriptionRef.current.value = obj.description;
+      
+    }
+
+  }, [editIsClicked, editedList]);
+
   const modalDisplayHandler = () => {
     dispatch(toggleTaskModelHandler());
   };
@@ -39,36 +56,76 @@ const TaskModal = () => {
   const descriptionRef = useRef(null);
 
   const addTodoHandler = async () => {
-    const obj = {
-      title: titleRef.current.value,
-      date: dateRef.current.value,
-      description: descriptionRef.current.value,
-    };
+   
+    if (editIsClicked) {
+    
+      const obj = editedList[0]; // Assuming you want to handle the first item
+        
+      const editedObj = {
+        title: titleRef.current.value,
+        date: dateRef.current.value,
+        description: descriptionRef.current.value,
+      };
 
-    const clearFormHandler = () => {
-      titleRef.current.value = '';
-      dateRef.current.value = '';
-      descriptionRef.current.value = '';
-    };
+      try {
+        const response = await fetch(`http://localhost:3000/api/${obj._id}`, {
+          method: "PUT",
+          body: JSON.stringify(editedObj),
+          headers: {
+            "Content-Type": "application/json"
+          },
+        });
 
-    try {
-      const response = await fetch('http://localhost:3000/api', {
-        method: 'POST',
-        body: JSON.stringify(obj),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
 
-      const data = await response.json();
-      console.log(data);
+        const data = await response.json();
 
-      alert('You have successfully added your task!');
+        alert("You have successfully edited your task!");
 
-      clearFormHandler();
-    } catch (error) {
-      console.log('Error occurred while adding the task! ', error);
-      alert('Error occurred while adding the task!');
+        titleRef.current.value = '';
+        dateRef.current.value = '';
+        descriptionRef.current.value = '';
+
+        console.log(data);
+
+      } catch (error) {
+        alert(error)
+        throw new Error(error);
+      }
+      
+
+
+    } else {
+      const obj = {
+        title: titleRef.current.value,
+        date: dateRef.current.value,
+        description: descriptionRef.current.value,
+      };
+
+      const clearFormHandler = () => {
+        titleRef.current.value = '';
+        dateRef.current.value = '';
+        descriptionRef.current.value = '';
+      };
+
+      try {
+        const response = await fetch('http://localhost:3000/api', {
+          method: 'POST',
+          body: JSON.stringify(obj),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        alert('You have successfully added your task!');
+
+        clearFormHandler();
+      } catch (error) {
+        console.log('Error occurred while adding the task! ', error);
+        alert('Error occurred while adding the task!');
+      }
     }
   };
 

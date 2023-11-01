@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import { Card, Button,Row,Col } from "react-bootstrap";
-import { AiFillStar, AiFillCheckCircle } from "react-icons/ai";
+import { AiFillStar, AiFillCheckCircle,AiFillEdit } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllTodo } from "../store/Features/slices/dataStore";
+import { fetchAllTodo,editTodo,toggleEditClickHandler } from "../store/Features/slices/dataStore";
 //import { markAsImportant } from "../store/Features/slices/dataStore";
 //import Link from "next/link";
 
@@ -112,6 +112,17 @@ const TaskCard = () => {
       
   };
 
+  const handleToggleEdit = (taskId, taskDate, taskTitle, taskDes) => {
+    dispatch(toggleEditClickHandler());
+    const obj = {
+           _id : taskId,
+          title : taskTitle,
+          date: taskDate,
+          description : taskDes,
+      }
+     dispatch(editTodo(obj));
+ }  
+
   return (
     <div>
           <div style= {{ textAlign: "center", color: "#2ecc71", fontWeight: "bolder", fontSize: "1.5rem",display:"flex",justifyContent:"center" }}
@@ -139,7 +150,15 @@ const TaskCard = () => {
               onClick={()=>handleToggleCompleted(task._id,task.date,task.title,task.description)}
             >
               <AiFillCheckCircle />
-            </Button>{" "}
+                  </Button>{" "}
+                  
+            <Button
+              variant={isCompleted ? "success" : "outline-success"}
+              onClick={()=>handleToggleEdit(task._id,task.date,task.title,task.description)}
+            >
+              <AiFillEdit />
+                  </Button>{" "}
+                  
           </Card.Body>
                   </Card>
                       </Col>
